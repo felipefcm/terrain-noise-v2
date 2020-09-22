@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "Simulator",
+"language": "GDScript",
+"path": "res://scripts/Simulator.gd"
+} ]
 _global_script_class_icons={
-
+"Simulator": ""
 }
 
 [application]
@@ -18,6 +23,10 @@ _global_script_class_icons={
 config/name="Terrain Generator"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Simulator="*res://scripts/Simulator.gd"
 
 [display]
 
@@ -68,4 +77,5 @@ fly_down={
 
 [rendering]
 
+quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"

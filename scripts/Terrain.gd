@@ -33,19 +33,23 @@ func generateLayer(layer: int):
 
 func generateCell(layer: int, x: int, z: int):
 	
-	var worldPosition = Vector3(x, layer, -z) * blockSize;
+	var mapPosition = Vector3(x, layer, -z);
+	var worldPosition = mapPosition * blockSize;
+	
+	var value = noise.get_noise_3dv(mapPosition);
+	if(value < -0.5): return;
 	
 	var cell: CSGBox = block.instance();
 	cell.width = blockSize;
 	cell.height = blockSize;
 	cell.depth = blockSize;
 
-	cell.material = determineMaterial(worldPosition);
+	cell.material = determineCellMaterial(worldPosition);
 
 	cell.translation = to_local(worldPosition);
 	add_child(cell);
 
-func determineMaterial(position: Vector3) -> Material:
+func determineCellMaterial(position: Vector3) -> Material:
 	
 	var cellHeight = position.y / blockSize;
 	var material;

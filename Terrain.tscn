@@ -1,0 +1,19 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://objects/Block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Terrain.gd" type="Script" id=2]
+[ext_resource path="res://materials/Ice.tres" type="Material" id=3]
+[ext_resource path="res://materials/Sand.tres" type="Material" id=4]
+[ext_resource path="res://materials/Dirt.tres" type="Material" id=5]
+[ext_resource path="res://materials/Water.tres" type="Material" id=6]
+[ext_resource path="res://materials/Grass.tres" type="Material" id=7]
+
+[node name="Terrain" type="Spatial"]
+script = ExtResource( 2 )
+block = ExtResource( 1 )
+grass = ExtResource( 7 )
+dirt = ExtResource( 5 )
+sand = ExtResource( 4 )
+water = ExtResource( 6 )
+ice = ExtResource( 3 )
+layers = 5
