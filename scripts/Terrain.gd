@@ -5,6 +5,7 @@ export (Material) var grass;
 export (Material) var dirt;
 export (Material) var sand;
 export (Material) var water;
+export (Material) var ice;
 
 export (int) var width = 64;
 export (int) var depth = 64;
@@ -39,5 +40,20 @@ func generateCell(layer: int, x: int, z: int):
 	cell.height = blockSize;
 	cell.depth = blockSize;
 
+	cell.material = determineMaterial(worldPosition);
+
 	cell.translation = to_local(worldPosition);
 	add_child(cell);
+
+func determineMaterial(position: Vector3) -> Material:
+	
+	var cellHeight = position.y / blockSize;
+	var material;
+	
+	if(cellHeight <= 0): material = water;
+	elif(cellHeight < 1): material = sand;
+	elif(cellHeight < 3): material = dirt;
+	elif(cellHeight < 5): material = grass;
+	elif(cellHeight < 7): material = ice;
+
+	return material;

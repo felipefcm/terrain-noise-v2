@@ -1,38 +1,47 @@
 extends Camera
 
-export (float) var sensibility = 1;
+export (float) var moveSensitivity = 5;
+export (float) var lookSensitivity = 0.1;
+
+var forward: Vector3;
 
 func _ready():
-	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	pass;
 
-func _unhandled_input(event):
+func _process(delta: float):
+	handleKey(delta);
 
-	if(event is InputEventKey):
-		handleKey(event);
-	elif(event is InputEventMouseMotion):
+func _unhandled_input(event):
+	if(event is InputEventMouseMotion):
 		handleMouseMotion(event);
 
-func handleKey(event: InputEventKey):
+func handleKey(delta: float):
 
-	if(event.is_action_pressed('ui_cancel')):
+	if(Input.is_action_pressed('ui_cancel')):
 		get_tree().quit();
 	
-	var rightStr = event.get_action_strength('ui_right');
-	var leftStr = event.get_action_strength('ui_left');
-	var frontStr = event.get_action_strength('ui_up');
-	var backStr = event.get_action_strength('ui_down');
+	var rightStr = Input.get_action_strength('ui_right');
+	var leftStr = Input.get_action_strength('ui_left');
+	var frontStr = Input.get_action_strength('ui_up');
+	var backStr = Input.get_action_strength('ui_down');
 
-	var up = event.get_action_strength('fly_up');
-	var down = event.get_action_strength('fly_down');
+	var up = Input.get_action_strength('fly_up');
+	var down = Input.get_action_strength('fly_down');
 
-	var motion := Vector3(
+	var motion: Vector3 = Vector3(
 		rightStr - leftStr, 
 		up - down, 
 		backStr - frontStr
-	);
+	) * moveSensitivity * delta;
 
-	translation = translation + motion * sensibility;
+	translate_object_local(motion);
+	get_tree().set_input_as_handled();
 
 func handleMouseMotion(event: InputEventMouseMotion):
-	pass;
+	
+	var direction = event.relative;
+	rotation_degrees.x += -direction.y * lookSensitivity;
+	rotation_degrees.y += -direction.x * lookSensitivity;
+
+	get_tree().set_input_as_handled();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=2]
@@ -7,11 +7,14 @@
 [ext_resource path="res://materials/Water.tres" type="Material" id=5]
 [ext_resource path="res://materials/Sand.tres" type="Material" id=6]
 [ext_resource path="res://materials/Dirt.tres" type="Material" id=7]
+[ext_resource path="res://materials/Ice.tres" type="Material" id=8]
 
 [node name="World" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.827159, 0.561968, 0, -0.561968, 0.827159, 0, 2.05918, 3.39179 )
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2.05918, 2.90771 )
+current = true
+fov = 80.0
 script = ExtResource( 2 )
 
 [node name="Terrain" type="Spatial" parent="."]
@@ -21,3 +24,5 @@ grass = ExtResource( 4 )
 dirt = ExtResource( 7 )
 sand = ExtResource( 6 )
 water = ExtResource( 5 )
+ice = ExtResource( 8 )
+layers = 3
