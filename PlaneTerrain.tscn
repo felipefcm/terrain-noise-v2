@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/PlaneTerrain.gd" type="Script" id=1]
+[ext_resource path="res://materials/VertexColor.tres" type="Material" id=2]
+
+[node name="PlaneTerrain" type="MeshInstance"]
+material_override = ExtResource( 2 )
+script = ExtResource( 1 )
+water = Color( 0, 0.247059, 0.627451, 1 )
+dirt = Color( 0.266667, 0.172549, 0, 1 )
+sand = Color( 0.992157, 0.996078, 0.243137, 1 )
+grass = Color( 0.223529, 0.701961, 0.00392157, 1 )
+forest = Color( 0.117647, 0.305882, 0.0313726, 1 )
+ice = Color( 0.992157, 0.996078, 1, 1 )

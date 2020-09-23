@@ -1,0 +1,7 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 3
+normal_enabled = true
+normal_scale = 1.0
